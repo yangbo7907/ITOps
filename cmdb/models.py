@@ -61,4 +61,6 @@ class Servers(models.Model):
     brand_id = models.ForeignKey(Brands)
     owner_id = models.ForeignKey(Owners)
     backup_owner_id = models.IntegerField()
-    app_id = models.ForeignKey(Application)    
+    app_id = models.ForeignKey(Application)
+
+''' 20171020'''
