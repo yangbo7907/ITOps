@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 
 
-def login(request):        
+def user_login(request):        
     if request.method == 'POST':            
         form = LoginForm(request.POST)            
         if form.is_valid():                
@@ -16,7 +16,8 @@ def login(request):
             if user is not None:                    
                 if user.is_active:                        
                     login(request, user)                        
-                    return HttpResponse('Authenticated successfully')
+#                    return HttpResponse('Authenticated successfully')
+                    return HttpResponseRedirect('/cmdb/index/')
                 else:                        
                     return HttpResponse('Disabled account')
         else:            
@@ -25,3 +26,6 @@ def login(request):
         form = LoginForm()        
         return render(request, 'login.html', {'form': form})
     
+
+def index(request):
+    return render(request, 'index.html')
