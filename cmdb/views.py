@@ -4,5 +4,5 @@ from .forms import LoginForm
 
 
 def login(request):
-    form = LoginForm()
-    return render(request,'login.html', {'form':'form'})
+    form = LoginForm(auto_id=False)
+    return render(request,'login.html', {'form':form})
